@@ -24,10 +24,12 @@ kotlin {
     }
     jvmToolchain(21)
 
-    listOf(iosArm64(), iosSimulatorArm64()).forEach { target ->
+    listOf(iosArm64(), iosSimulatorArm64(), macosArm64(), macosX64()).forEach { target ->
         val slice = when (target.konanTarget) {
             KonanTarget.IOS_ARM64 -> "ios-arm64"
-            else -> "ios-simulator-arm64"
+            KonanTarget.IOS_SIMULATOR_ARM64 -> "ios-simulator-arm64"
+            KonanTarget.MACOS_ARM64 -> "macos-arm64"
+            else -> "macos-x64"
         }
         // The cinterop klib carries the static SQLCipher archive (built by
         // native/build-sqlcipher.sh), so consumers get the cipher linked in transitively —
@@ -55,7 +57,7 @@ kotlin {
             implementation(libs.sqlcipher.android)
             implementation(libs.androidx.sqlite)
         }
-        iosMain.dependencies {
+        appleMain.dependencies {
             implementation(libs.sqldelight.native.driver)
         }
     }

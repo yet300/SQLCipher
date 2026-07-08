@@ -12,6 +12,7 @@ set -euo pipefail
 
 SQLCIPHER_VERSION="4.16.0"
 IOS_MIN_VERSION="13.0"
+MACOS_MIN_VERSION="11.0"
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 WORK_DIR="$SCRIPT_DIR/build"
@@ -70,10 +71,12 @@ build_slice() {
 
 build_slice "ios-arm64"           "iphoneos"        "arm64-apple-ios$IOS_MIN_VERSION"
 build_slice "ios-simulator-arm64" "iphonesimulator" "arm64-apple-ios$IOS_MIN_VERSION-simulator"
+build_slice "macos-arm64"         "macosx"          "arm64-apple-macos$MACOS_MIN_VERSION"
+build_slice "macos-x64"           "macosx"          "x86_64-apple-macos$MACOS_MIN_VERSION"
 
 echo
 echo "Verification:"
-for slice in ios-arm64 ios-simulator-arm64; do
+for slice in ios-arm64 ios-simulator-arm64 macos-arm64 macos-x64; do
   a="$LIBS_DIR/$slice/libsqlcipher.a"
   n_sqlite=$(nm "$a" 2>/dev/null | grep -c "T _sqlite3_open_v2" || true)
   n_cipher=$(nm "$a" 2>/dev/null | grep -c "T _sqlcipher_" || true)

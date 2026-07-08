@@ -4,7 +4,8 @@ SQLCipher-encrypted [SQLDelight](https://github.com/sqldelight/sqldelight) drive
 Multiplatform — one dependency, both platforms:
 
 - **Android**: wraps the official `net.zetetic:sqlcipher-android` binaries.
-- **iOS** (`iosArm64`, `iosSimulatorArm64`): the stock SQLDelight/SQLiter native driver, linked
+- **Apple** (`iosArm64`, `iosSimulatorArm64`, `macosArm64`, `macosX64`): the stock
+  SQLDelight/SQLiter native driver, linked
   against a **static SQLCipher bundled inside this library's klib** (CommonCrypto provider, same
   as Zetetic's official iOS builds). Consumers need **no** SPM package, no vendored xcframework,
   and no linker flags.
@@ -45,7 +46,7 @@ passphrase (the zetetic factory zeroes the array after open); iOS hex-armors the
 passphrase string for SQLiter's `PRAGMA key`. The two file formats therefore intentionally
 diverge — encrypted databases are per-device and not portable across platforms.
 
-## Consumer requirements (iOS)
+## Consumer requirements (Apple targets)
 
 Exactly **one** `sqlite3_*` exporter may exist in the final link — the SQLCipher bundled here:
 
