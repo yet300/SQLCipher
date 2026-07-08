@@ -1,0 +1,7 @@
+# No headers on purpose: SQLiter (under SQLDelight's native driver) already binds the sqlite3_*
+# C API. This cinterop exists only to embed the static SQLCipher archive into the klib so every
+# consumer link resolves those symbols to SQLCipher instead of the system SQLite.
+package = com.yet.sqlcipher.cinterop
+staticLibraries = libsqlcipher.a
+# CommonCrypto lives in libSystem; Security provides SecRandomCopyBytes for the CC provider.
+linkerOpts = -framework Security
