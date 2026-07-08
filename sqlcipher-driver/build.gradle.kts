@@ -82,7 +82,7 @@ mavenPublishing {
         name = "SqlCipherDriver"
         description = "SQLCipher-encrypted SQLDelight drivers for Kotlin Multiplatform (Android + iOS), with the iOS cipher binary bundled in the klib."
         inceptionYear = "2026"
-        url = "https://github.com/yet300/SqlCipherDriver"
+        url = "https://github.com/yet300/SQLCipher"
         licenses {
             license {
                 name = "The Apache License, Version 2.0"
@@ -98,9 +98,9 @@ mavenPublishing {
             }
         }
         scm {
-            url = "https://github.com/yet300/SqlCipherDriver"
-            connection = "scm:git:git://github.com/yet300/SqlCipherDriver.git"
-            developerConnection = "scm:git:ssh://git@github.com/yet300/SqlCipherDriver.git"
+            url = "https://github.com/yet300/SQLCipher"
+            connection = "scm:git:git://github.com/yet300/SQLCipher.git"
+            developerConnection = "scm:git:ssh://git@github.com/yet300/SQLCipher.git"
         }
     }
 }
